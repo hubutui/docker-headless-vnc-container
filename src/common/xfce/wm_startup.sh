@@ -8,7 +8,7 @@ echo -e "\n------------------ startup of Xfce4 window manager ------------------
 xset -dpms &
 xset s noblank &
 xset s off &
-
-/usr/bin/startxfce4 --replace > $HOME/wm.log &
-sleep 1
-cat $HOME/wm.log
+/usr/bin/startxfce4 --replace &
+# /usr/bin/startxfce4 --replace > $HOME/wm.log &
+# sleep 1
+# cat $HOME/wm.log
