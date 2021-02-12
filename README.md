@@ -21,6 +21,12 @@ To run a container:
 docker run -d -p 5901:5901 -p 6901:6901 --env VNC_PW=vncpassword --env VNC_RESOLUTION=1280x1024 vnc-xfce
 ```
 
+or if you'd like to run with the same user as host system:
+
+```bash
+docker run -d -p 5901:5901 -p 6901:6901 --env VNC_PW=vncpassword --env VNC_RESOLUTION=1280x1024 --user $(id -u):$(id -g) vnc-xfce
+```
+
 Now, you could connect to the container with:
 * a VNC client using `IP:5901` with password `vncpassword`
 * a web browser to `http://IP:6901` or `http://IP:6901/vnc_lite.html`

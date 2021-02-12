@@ -62,5 +62,21 @@ RUN --mount=type=cache,sharing=locked,target=/var/cache/apt \
     xfce4 \
     xfce4-terminal
 
+# install wps
+ARG WPS_URL='https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/10161/wps-office_11.1.0.10161_amd64.deb'
+RUN --mount=type=cache,sharing=locked,target=/var/cache/apt \
+    --mount=type=cache,sharing=locked,target=/var/lib/apt \
+    --mount=type=cache,target=/tmp \
+    wget -qO /tmp/wps.deb ${WPS_URL} \
+    && apt update \
+    && apt install -y --no-install-recommends \
+    /tmp/wps.deb
+
+# install stata deps
+RUN --mount=type=cache,sharing=locked,target=/var/cache/apt \
+    --mount=type=cache,sharing=locked,target=/var/lib/apt \
+    apt update \
+    && apt install -y --no-install-recommends \
+    libtinfo
 EXPOSE 5901 6901
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
